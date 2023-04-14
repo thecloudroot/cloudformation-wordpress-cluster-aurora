@@ -535,7 +535,7 @@ Resources:
             exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
             sudo apt update && apt upgrade -y
             sudo apt install nfs-common cifs-utils -y
-            sudo apt install apache2 mysql-client php php-cgi php-cli php-gd php-mysql wscli jq curl zip unzip net-tools  -y
+            sudo apt install apache2 mysql-client php php-cgi php-cli php-gd php-mysql awscli jq curl zip unzip net-tools  -y
             systemctl start apache2
             systemctl enable apache2
             cd /var/www/html 
