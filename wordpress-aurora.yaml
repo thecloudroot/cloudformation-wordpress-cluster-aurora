@@ -219,18 +219,10 @@ Parameters:
     ConstraintDescription: must be a valid EC2 instance type.
   InstanceType:
     Type: String
-    Default: t3a.small
-    AllowedValues:
-      - t3a.xlarge
-      - t3a.medium
-      - t3a.2xlarge
-      - t3a.large
-      - t3a.small
-    Description: Please enter the instance type example t3a.medium,t3a.large,t3a.xlarge,t3a.2xlarge
+    Description: to use ARM64 = m7g.medium | to use amdx86_64 = t3a.medium
   AmiID:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
-    Description: Query for the latest Amazon Linux AMI IDs using AWS Systems Manager Parameter Store
-    Default: '/aws/service/canonical/ubuntu/server/jammy/stable/current/amd64/hvm/ebs-gp2/ami-id'
+    Description: To use ARM64 = /aws/service/canonical/ubuntu/server/jammy/stable/current/arm64/hvm/ebs-gp2/ami-id | To use amdx86_64 = /aws/service/canonical/ubuntu/server/jammy/stable/current/amd64/hvm/ebs-gp2/ami-id
   VpcId:
     Description: VPC ID for resources
     Type: AWS::EC2::VPC::Id
@@ -487,7 +479,7 @@ Resources:
     DependsOn:
     - ApplicationLoadBalancer
     Properties:
-      Name: Nginx-TargetGroup-80'
+      Name: 'wp-TargetGroup-80'
       HealthCheckIntervalSeconds: 6
       HealthCheckPath: /
       HealthCheckProtocol: HTTP
@@ -500,7 +492,7 @@ Resources:
         Ref: VpcId
       Tags:
         - Key: Name
-          Value: !Sub Nginx-TargetGroup-80'
+          Value: !Sub 'wp-TargetGroup-80'
       LoadBalancerArns:
         - !Ref ApplicationLoadBalancer  
       Targets:
